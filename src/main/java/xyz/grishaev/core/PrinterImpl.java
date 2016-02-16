@@ -14,15 +14,20 @@ public class PrinterImpl implements Printer {
     }
     
     public <T extends Comparable<T>> String asSortedString(T... values) {
-        for (T value : values) {
-            pq.insert(value);
-        }
-        StringBuilder str = new StringBuilder();
-        while (!pq.isEmpty()) {
-           str.append(pq.popMax()).append(",");
+        if (values.length > 0) {
+
+
+            for (T value : values) {
+                pq.insert(value);
+            }
+            StringBuilder str = new StringBuilder();
+            while (!pq.isEmpty()) {
+                str.append(pq.popMax()).append(",");
 //            System.out.println(pq.popMax());
-        }
-        str.delete(str.lastIndexOf(",") - 1,str.lastIndexOf(","));
-        return str.toString();
+            }
+            System.out.println("============" + str.lastIndexOf(","));
+            str.deleteCharAt(str.lastIndexOf(","));
+            return str.toString();
+        } else return "";
     }
 }
