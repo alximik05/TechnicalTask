@@ -17,7 +17,8 @@ public class PriorityQueueImpl implements PriorityQueue {
         return size;
     }
 
-    public void insert(Comparable element) {
+
+    public synchronized void insert(Comparable element) {
         if (size == array.length) {
             resize();
         }
@@ -25,41 +26,31 @@ public class PriorityQueueImpl implements PriorityQueue {
         size++;
     }
 
-    private void resize() {
+    private synchronized void resize() {
         Comparable[] newArray = new Comparable[array.length * 2];
         System.arraycopy(array, 0, newArray, 0, array.length);
         array = newArray;
     }
 
-    private int indexOfMax() {
-            // Search through the entire array for the smallest element.
+    private synchronized int indexOfMax() {
             int max = 0;
             for (int i = 1; i < size; i++) {
-                // If the current smallest is greater than the element at index i,
-                // then make the element at index i the new smallest.
                 if (array[max].compareTo(array[i]) < 0)
                     max = i;
             }
             return max;
     }
 
-    // Return true if the queue is empty, false if not empty.
     public boolean isEmpty() {
         return size <= 0;
     }
 
     public Comparable popMax() {
-        int largest = indexOfMax();    // index of the element with the max key
-        Comparable maxElement = array[largest];  // the actual element
-
-        // Move the element in the last position to this position.
+        int largest = indexOfMax();
+        Comparable maxElement = array[largest];
         array[largest] = array[size-1];
-
-        // We no longer have an element in that last position.
         size--;
         array[size] = null;
-
-        // Return the element with the minimum key.
         return maxElement;
     }
 

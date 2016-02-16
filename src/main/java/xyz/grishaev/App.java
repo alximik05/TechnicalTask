@@ -14,6 +14,6 @@ public class App
         System.out.println( "Hello World!" );
 
         Printer printer = new PrinterImpl();
-        printer.asSortedString(15, 7, 4, 1, 7, 2, 15, 7, 4, 1, 7, 2, 15, 7, 4, 1, 7, 2, 15, 7, 4, 1, 7, 2, 15, 7, 4, 1, 7, 2, 15, 7, 4, 1, 7, 2, 15, 7, 4, 1, 7, 2, 15, 7, 4, 1, 7, 2);
+        System.out.println(printer.asSortedString(15, 7, 4, 1, 7, 2, 15, 7, 4, 1, 7, 2, 15, 7, 4, 1, 7, 2, 15, 7, 4, 1, 7, 2, 15, 7, 4, 1, 7, 2, 15, 7, 4, 1, 7, 2, 15, 7, 4, 1, 7, 2, 15, 7, 4, 1, 7, 2));
     }
 }

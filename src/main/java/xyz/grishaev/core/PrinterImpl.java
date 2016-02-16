@@ -1,9 +1,6 @@
 package xyz.grishaev.core;
 
-import xyz.grishaev.util.PriorityQueue;
 import xyz.grishaev.util.PriorityQueueImpl;
-
-import java.util.Arrays;
 
 
 /**
@@ -17,17 +14,15 @@ public class PrinterImpl implements Printer {
     }
     
     public <T extends Comparable<T>> String asSortedString(T... values) {
-        for (int i = 0; i < values.length; i++) {
-            pq.insert(values[i]);
+        for (T value : values) {
+            pq.insert(value);
         }
-        System.out.println(Arrays.toString(pq.getArray()));
-        String str = new String();
-
+        StringBuilder str = new StringBuilder();
         while (!pq.isEmpty()) {
-            System.out.println(pq.popMax());
-            System.out.println("соталось " + pq.size());
-            System.out.println(Arrays.toString(pq.getArray()));
+           str.append(pq.popMax()).append(",");
+//            System.out.println(pq.popMax());
         }
-        return null;
+        str.delete(str.lastIndexOf(",") - 1,str.lastIndexOf(","));
+        return str.toString();
     }
 }
